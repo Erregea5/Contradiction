@@ -65,6 +65,11 @@ class CodePanel extends JPanel {
         
         JButton jb=new JButton("Enter");
         jb.addActionListener((ActionEvent a)->{
+            boolean hcheck=true;
+            if(jtf.getText().equals("help")){
+                    jtf.setText(helpText);
+                    hcheck=false;
+                }
             String[] s= jtf.getText().toLowerCase().trim().split("\n");
             String fs="";
             for(String sf:s){
@@ -74,7 +79,7 @@ class CodePanel extends JPanel {
             try{
             boolean check=true;
             for(int i=0;i<f.length-1;i++){
-                String all="-1-2-3-4-5-6-7-8-90123456789helpwalkjumpattackwait1005025\n";
+                String all="-1-2-3-4-5-6-7-8-90123456789walkjumpattackwait1005025\n";
                 String nums="-1-2-3-4-5-6-7-8-901234567891005025";
                 String in=f[i];
                 System.out.println(in);
@@ -82,10 +87,6 @@ class CodePanel extends JPanel {
                     check=false;
                 }
                 String next=i<f.length-1?f[i+1]:"qwaszx";
-                if(in.equals("help")){
-                    jtf.setText(helpText);
-                    break;
-                }
                 
                 if((!next.equals("qwaszx"))&&nums.contains(next)){
                     int num=Integer.parseInt(next)%10;
@@ -98,7 +99,7 @@ class CodePanel extends JPanel {
                 
             }
             notReady.setVisible(!check);
-            if(!notReady.isVisible()){
+            if((!notReady.isVisible())&&hcheck){
                 Game game=new Game(commands);
                 game.start();
             }
