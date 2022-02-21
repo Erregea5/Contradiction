@@ -157,12 +157,12 @@ class paint extends JPanel{
             laserIndex++;
             if(laserIndex==14)laserIndex=0;
             if(dead==14)thereAreVillagers=false;
-            //try{Thread.sleep(100);}
-            //catch(Exception e){
-            //    System.err.println(e);
-            //}
+            try{Thread.sleep(50);}
+            catch(Exception e){
+                System.err.println(e);
+            }
             limit++;
-            repaint(2000);
+            this.update(this.getGraphics());
         }
         if(!thereAreVillagers){
             Ending end = new Ending();
